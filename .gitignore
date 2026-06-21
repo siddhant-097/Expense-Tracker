@@ -49,5 +49,8 @@ Thumbs.db
 *.tmp
 *.temp
 
+# Excel export files (generated reports)
+*.xlsx
+
 # Optional: keep if tutorial uses uploads folder
 # uploads/
