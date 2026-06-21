@@ -1,6 +1,6 @@
-import incomeModel from "../models/incomeModel";
+import incomeModel from "../models/incomeModel.js";
 import XLSX from 'xlsx';
-import getDateRange from "../utils/dataFilter";
+import getDateRange from "../utils/dataFilter.js";
 
 // add income
 export async function addIncome(req, res) {
@@ -40,9 +40,9 @@ export async function addIncome(req, res) {
 
 // to get income(all)
 export async function getAllIncome(req, res) {
-    const userId = req.user._Id;
+    const userId = req.user._id;
     try {
-        const income = (await incomeModel.find({ userId })).Sort({ date: -1 });
+        const income = await incomeModel.find({ userId }).sort({ date: -1 });
         res.json(income);
     }
 
@@ -125,7 +125,7 @@ export async function downloadIncomeExcel(req, res) {
             Description: inc.description,
             Amount: inc.amount,
             Category: inc.category,
-            Date: new Data(inc.date).toLocalDateString(),
+            Date: new Date(inc.date).toLocaleDateString(),
         }));
 
         const worksheet = XLSX.utils.json_to_sheet(plainData);
