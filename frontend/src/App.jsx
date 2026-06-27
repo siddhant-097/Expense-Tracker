@@ -1,12 +1,17 @@
 import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Layout from './components/layout.jsx'
+import Dashboard from './pages/Dashboard.jsx'
 
 const App = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-    </div>
+    <>
+      <Routes>
+        <Route element = {<Layout/>}>
+          <Route path = '/' element = {<Dashboard/>} />
+        </Route> 
+      </Routes>
+    </>
   )
 }
 
