@@ -1,9 +1,11 @@
 import React from 'react'
+import {styles} from '../assets/dummyStyles.js'
+import Navbar from './Navbar.jsx'
 
 const layout = ({onLogout, user}) => {
   return (
-    <div>
-        Layout
+    <div className={styles.layout.root}>
+        <Navbar user={user} onLogout={onLogout} />
     </div>
   )
 }
