@@ -1,8 +1,11 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { navbarStyles } from '../assets/dummyStyles.js'
 import img1 from '../assets/logo.png'
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, LogOut } from 'lucide-react';
 import { Navigate, useNavigate } from 'react-router-dom'
+import axios from 'axios';
+
+const BASE_URL = 'http://localhost:5173/api'
 
 const Navbar = ({ user: propUser, onLogout }) => {
 
@@ -15,8 +18,50 @@ const Navbar = ({ user: propUser, onLogout }) => {
     email: "",
   }
 
+  // to fetch the user data from server
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        const response = await axios.get(`${BASE_URL}/user/me`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const userData = response.data.user || response.data;
+        setUser(userData);
+      }
+      catch (error) {
+        console.error("Failed to load profile", error);
+      }
+    };
+
+    if (!propUser) {
+      fetchUserData();
+    }
+  }, [propUser]);
+
+
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
+  const handleLogout = () => {
+    setMenuOpen(false);
+    localStorage.removeItem("token");
+    onLogout?.();
+    navigate("/login");
+  };
+
+  // closes the toggle menu if click outside the box
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <header className={navbarStyles.header}>
@@ -86,10 +131,10 @@ const Navbar = ({ user: propUser, onLogout }) => {
                 </div>
 
                 <div className={navbarStyles.menuItemsBorder}>
-                    <button onClick={handleLogout} className={navbarStyles.logoutButton}>
-                      <LogOut className="w-4 h-4" />
-                      <span>Log Out</span>
-                    </button>
+                  <button onClick={handleLogout} className={navbarStyles.logoutButton}>
+                    <LogOut className="w-4 h-4" />
+                    <span>Log Out</span>
+                  </button>
                 </div>
               </div>
             )}
