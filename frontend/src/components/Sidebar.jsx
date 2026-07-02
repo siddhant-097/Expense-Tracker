@@ -111,21 +111,20 @@ const Sidebar = ({ user, isCollapsed, setIsCollapsed }) => {
                     )}>
 
                         <div className='flex items-center'>
-                            <div className={sidebarStyles.userInitials.base}>{initial}
-                                {!isCollapsed && (
-                                    <motion.div
-                                        className="ml-3 overflow-hidden"
-                                        initial={{ opacity: 0, x: -10 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -10 }}
-                                    >
-                                        <h2 className='text-sm font-bold text-gray-800 truncate'>
-                                            {username}
-                                        </h2>
-                                        <p className='text-xs text-gray-500 truncate'>{email}</p>
-                                    </motion.div>
-                                )}
-                            </div>
+                            <div className={sidebarStyles.userInitials.base}>{initial}</div>
+                            {!isCollapsed && (
+                                <motion.div
+                                    className="ml-3 overflow-hidden"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: -10 }}
+                                >
+                                    <h2 className='text-sm font-bold text-gray-800 truncate'>
+                                        {username}
+                                    </h2>
+                                    <p className='text-xs text-gray-500 truncate'>{email}</p>
+                                </motion.div>
+                            )}
                         </div>
                     </div>
                     <div className='flex-1 overflow-y-auto py-4 custom-scrollbar'>
@@ -242,15 +241,15 @@ const Sidebar = ({ user, isCollapsed, setIsCollapsed }) => {
                                 </div>
 
                                 <div className={sidebarStyles.mobileFooter}>
-                                    <Link 
-                                    onClick={() => setMobileOpen(false)}
+                                    <Link
+                                        onClick={() => setMobileOpen(false)}
                                         to="https://www.linkedin.com/in/siddhantchaudhary097/"
                                         className={sidebarStyles.mobileFooterLink}
                                     >
-                                        <HelpCircle size={20} className='text-gray-500'/>
+                                        <HelpCircle size={20} className='text-gray-500' />
                                     </Link>
                                     <button onClick={handleLogout} className={sidebarStyles.mobileLogoutButton}>
-                                        <LogOut size={20} className='text-gray-500'/>
+                                        <LogOut size={20} className='text-gray-500' />
                                         <span>Logout</span>
                                     </button>
                                 </div>
