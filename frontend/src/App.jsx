@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
-import Layout from './components/layout.jsx'
+import Layout from './components/Layout.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import Sidebar from './components/Sidebar.jsx'
 

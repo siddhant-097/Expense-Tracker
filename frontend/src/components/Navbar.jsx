@@ -5,7 +5,7 @@ import { ChevronDown, LogOut } from 'lucide-react';
 import { Navigate, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5173/api'
+const BASE_URL = 'http://localhost:4000/api'
 
 const Navbar = ({ user: propUser, onLogout }) => {
 
