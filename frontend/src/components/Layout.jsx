@@ -443,7 +443,7 @@ const Layout = ({ onLogout, user }) => {
                       <div className='flex items-center gap-1 md:gap-4 lg:gap-3'>
                         <div
                          className={`p-2 rounded-lg ${
-                          styles.colors.transactions.bg(type)
+                          styles.colors.transaction.bg(type)
                         }`}
                         >
                           {CATEGORY_ICONS[category] || (
