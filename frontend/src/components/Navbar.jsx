@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { navbarStyles } from '../assets/dummyStyles.js'
 import img1 from '../assets/logo.png'
-import { ChevronDown, LogOut } from 'lucide-react';
-import { Navigate, useNavigate } from 'react-router-dom'
+import { ChevronDown, LogOut, User } from 'lucide-react';
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:4000/api'
 
 const Navbar = ({ user: propUser, onLogout }) => {
-
   const navigate = useNavigate();
   const menuRef = useRef();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -84,12 +83,12 @@ const Navbar = ({ user: propUser, onLogout }) => {
             <button onClick={toggleMenu} className={navbarStyles.userButton}>
               <div className="relative">
                 <div className={navbarStyles.userAvatar}>
-                  {user?.name?.[0]?.toUpperCae() || "U"}
+                  {user?.name?.[0]?.toUpperCase() || "U"}
                 </div>
                 <div className={navbarStyles.statusIndicator}></div>
               </div>
               <div className={navbarStyles.userTextContainer}>
-                <p className={navbarStyles.userName}>{user?.Name || "User"}</p>
+                <p className={navbarStyles.userName}>{user?.name || "User"}</p>
                 <p className={navbarStyles.userEmail}>
                   {user?.email || "user@expensetracker.com"}
                 </p>
@@ -97,7 +96,7 @@ const Navbar = ({ user: propUser, onLogout }) => {
               <ChevronDown className={navbarStyles.chevronIcon(menuOpen)} />
             </button>
 
-            {/* dropdown mmenu */}
+            {/* dropdown menu */}
             {menuOpen && (
               <div className={navbarStyles.dropdownMenu}>
                 <div className={navbarStyles.dropdownHeader}>
@@ -125,7 +124,7 @@ const Navbar = ({ user: propUser, onLogout }) => {
                     }}
                     className={navbarStyles.menuItem}
                   >
-                    <user className="w-4 h-4" />
+                    <User className="w-4 h-4" />
                     <span>My Profile</span>
                   </button>
                 </div>
