@@ -8,6 +8,7 @@ import { ArrowDown, BarChart, ChevronDown, ChevronUp, DollarSign, PiggyBank, Plu
 import FinancialCard from '../components/FinancialCard.jsx';
 import GaugeCard from '../components/GaugeCard.jsx';
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+import AddTransactionModal from '../components/Add.jsx'
 
 const API_BASE = "http://localhost:4000/api";
 
@@ -663,6 +664,15 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
+      <AddTransactionModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        newTransaction={newTransaction}
+        setNewTransaction={setNewTransaction}
+        handleAddTransaction={handleAddTransaction}
+        loading={loading}
+      />
     </div>
   )
 }
